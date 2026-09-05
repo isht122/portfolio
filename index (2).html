@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Isht — Developer Portfolio</title>
+<meta name="description" content="Isht builds websites and the automated systems that run behind them.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #14181A;
+    --bg-panel: #1B2023;
+    --ink: #EDEAE1;
+    --ink-dim: #A9A79D;
+    --accent: #C9A15A;
+    --accent-2: #5FA394;
+    --line: #2B3235;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'IBM Plex Sans', -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.6;
+    font-size: 17px;
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* HERO */
+  header.hero {
+    padding: 120px 0 80px;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise 0.9s ease-out forwards;
+  }
+
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    header.hero { animation: none; opacity: 1; transform: none; }
+  }
+
+  .eyebrow {
+    font-size: 15px;
+    color: var(--accent-2);
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(34px, 6vw, 52px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    max-width: 15ch;
+  }
+
+  .hero p.sub {
+    margin-top: 22px;
+    max-width: 46ch;
+    color: var(--ink-dim);
+    font-size: 18px;
+  }
+
+  /* SECTION SCAFFOLDING */
+  section {
+    padding: 64px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  section.about { padding-top: 48px; }
+
+  h2 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 26px;
+    margin-bottom: 6px;
+  }
+
+  .role {
+    color: var(--accent-2);
+    font-size: 15px;
+    margin-bottom: 18px;
+  }
+
+  p { max-width: 60ch; }
+
+  p + p { margin-top: 14px; }
+
+  .proof-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s ease;
+  }
+
+  .proof-link:hover,
+  .proof-link:focus-visible {
+    border-bottom-color: var(--accent);
+  }
+
+  .proof-link .arrow { transition: transform 0.15s ease; }
+  .proof-link:hover .arrow { transform: translateX(3px); }
+
+  .note {
+    margin-top: 18px;
+    padding: 14px 16px;
+    background: var(--bg-panel);
+    border-left: 2px solid var(--accent);
+    color: var(--ink-dim);
+    font-size: 15px;
+    max-width: 56ch;
+  }
+
+  /* FLOW DIAGRAM */
+  .flow {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0;
+  }
+
+  .flow-step {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 10px 20px;
+    font-size: 14.5px;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  .flow-arrow {
+    color: var(--accent);
+    font-size: 18px;
+    margin: 0 10px;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 560px) {
+    .flow { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .flow-arrow { transform: rotate(90deg); margin: 0 0 0 22px; }
+  }
+
+  /* BRANCHING FLOW (certification pipeline) */
+  .branch-flow {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .branch-flow .flow-step {
+    border-radius: 10px;
+  }
+
+  .branch-flow .flow-step.small {
+    font-size: 13.5px;
+    padding: 8px 14px;
+  }
+
+  .branch-arrow-down {
+    color: var(--accent);
+    font-size: 18px;
+    margin: 6px 0;
+    line-height: 1;
+  }
+
+  .branch-arrow-down.small { margin: 8px 0; }
+
+  .branch-split {
+    width: 100%;
+    max-width: 420px;
+    height: 22px;
+    position: relative;
+    margin-top: 4px;
+  }
+
+  .branch-line {
+    position: absolute;
+    top: 0;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .branch-line::before,
+  .branch-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 1px;
+    height: 22px;
+    background: var(--line);
+  }
+
+  .branch-line::before { left: 0; }
+  .branch-line::after { right: 0; }
+
+  .branch-cols {
+    display: flex;
+    gap: 40px;
+    margin-top: 14px;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .branch-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 200px;
+    flex: 1 1 200px;
+    max-width: 260px;
+  }
+
+  .path-label {
+    color: var(--accent-2);
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 8px;
+    border: 1px solid var(--accent-2);
+    border-radius: 999px;
+    padding: 4px 14px;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 56px 0 90px;
+    border-top: 1px solid var(--line);
+  }
+
+  footer h2 { margin-bottom: 14px; }
+
+  footer .links {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  footer a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2px;
+    width: fit-content;
+  }
+
+  footer a:hover, footer a:focus-visible { border-bottom-color: var(--accent); }
+
+  a:focus-visible, .proof-link:focus-visible {
+    outline: 2px solid var(--accent-2);
+    outline-offset: 3px;
+  }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+</style>
+</head>
+<body>
+
+  <div class="wrap">
+
+    <header class="hero">
+      <div class="eyebrow">Nutan Singh</div>
+      <h1>I build websites, and the systems that run behind them.</h1>
+      <p class="sub">Full-stack developer working across Next.js, Supabase, and automation tools like Zapier and n8n — with 15 years of teaching experience before this, which is where the habit of explaining things clearly comes from.</p>
+    </header>
+
+    <section class="about">
+      <p>I came to development from a non-technical background, teaching science for 15 years. That means I care about whether a system actually works for the person using it, not just whether the code runs. Below are four things I've built — a live storefront, a personal tool, and two automations that quietly do work no one has to do by hand.</p>
+    </section>
+
+    <section id="renuka">
+      <h2>Renuka's Art Collection</h2>
+      <div class="role">Full-stack e-commerce site — Next.js, Supabase, Vercel</div>
+      <p>A storefront for a handpainted saree business, built end to end: product gallery, shopping cart, customer accounts, and an admin panel with role-based access for managing orders and stock.</p>
+      <p>Supabase handles authentication, the database, and image storage behind row-level security policies, so customer data and admin actions stay properly separated.</p>
+      <a class="proof-link" href="https://renuka-3hux.vercel.app" target="_blank" rel="noopener">View the live site <span class="arrow">→</span></a>
+    </section>
+
+    <section id="resume">
+      <h2>Resume App</h2>
+      <div class="role">Web app — deployed on Vercel</div>
+      <p>A resume-building tool designed to make putting together a clean, presentable resume simple — no design experience required on the user's end.</p>
+      <a class="proof-link" href="https://resume-sepia-theta.vercel.app" target="_blank" rel="noopener">View the live app <span class="arrow">→</span></a>
+    </section>
+
+    <section id="certification">
+      <h2>Automated Testing &amp; Certification Pipeline</h2>
+      <div class="role">Google Forms, Google Sheets, Zapier</div>
+      <p>A self-grading test system: a candidate takes a test through a Google Form, their answers are scored and logged to a Google Sheet, and a Zap watches that sheet, verifies the result, and sends the certificate to the examiner automatically.</p>
+      <p>Once it's set up, no one has to check a result or send an email by hand — the whole path from "test submitted" to result delivered runs on its own, branching automatically depending on the outcome.</p>
+      <div class="branch-flow">
+        <div class="flow-step">New row in Google Sheet</div>
+        <div class="branch-arrow-down">↓</div>
+        <div class="flow-step">Zapier checks the result</div>
+        <div class="branch-split">
+          <div class="branch-line"></div>
+        </div>
+        <div class="branch-cols">
+          <div class="branch-col">
+            <div class="path-label">Path A</div>
+            <div class="flow-step small">Certificate created from template</div>
+            <div class="branch-arrow-down small">↓</div>
+            <div class="flow-step small">Emailed to examiner</div>
+          </div>
+          <div class="branch-col">
+            <div class="path-label">Path B</div>
+            <div class="flow-step small">Different outcome email sent</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="support-agent">
+      <h2>AI Customer Support Agent</h2>
+      <div class="role">n8n workflow, built for Renuka's Art Collection</div>
+      <p>A support agent that answers customer questions about products, availability, and timing directly, without a person having to reply to each one. It's built on a knowledge base drawn from a spreadsheet of real customer questions, plus details about the site itself, so its answers stay grounded in how the business actually works.</p>
+      <div class="flow">
+        <div class="flow-step">Customer question</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Matched against knowledge base</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Answer sent</div>
+      </div>
+      <div class="note">Not publicly linkable — n8n's policies don't allow published, publicly accessible workflow demos. Happy to walk through it live on a call.</div>
+    </section>
+
+    <footer>
+      <h2>Get in touch</h2>
+      <p>Looking for someone to build a website, or automate a process that's currently eating up manual time — that's exactly this kind of work.</p>
+      <div class="links">
+        <a href="mailto:nutansingh603@gmail.com">nutansingh603@gmail.com</a>
+        <a href="https://www.linkedin.com/in/nutan-singh-33a642420" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>
